@@ -1,30 +1,46 @@
 #!/bin/bash
 
+# -----------------------------------------------------
 # Script 3: Disk and Permission Auditor
+# Author: Bhavin
+# Purpose:
+#   Audits important Linux directories and reports
+#   their disk usage and ownership permissions.
+#   Demonstrates use of a for loop and command parsing.
+# -----------------------------------------------------
 
-DIRS=("/etc" "/var/log" "/home" "/usr/bin" "/tmp")
+DIRECTORIES=("/etc" "/var/log" "/home" "/usr/bin" "/tmp")
 
-echo "Directory Audit Report"
-echo "----------------------"
+echo "================================"
+echo " Linux Directory Security Audit "
+echo "================================"
 
-for DIR in "${DIRS[@]}"
+for DIR in "${DIRECTORIES[@]}"
 do
+    # Check if directory exists
     if [ -d "$DIR" ]; then
-        PERMS=$(ls -ld $DIR | awk '{print $1, $3, $4}')
-        SIZE=$(du -sh $DIR 2>/dev/null | cut -f1)
-        echo "$DIR => Permissions: $PERMS | Size: $SIZE"
+
+        # Extract permissions, owner and group
+        PERMISSION_INFO=$(ls -ld $DIR | awk '{print $1, $3, $4}')
+
+        # Calculate directory size
+        SIZE_INFO=$(du -sh $DIR 2>/dev/null | cut -f1)
+
+        echo "$DIR -> Permissions: $PERMISSION_INFO | Size: $SIZE_INFO"
+
     else
-        echo "$DIR does not exist"
+        echo "$DIR directory not found on this system."
     fi
 done
 
 echo ""
-echo "Checking Python config directory"
+echo "Additional Check: Python executable location"
 
-CONFIG_DIR="/usr/bin/python3"
+PYTHON_PATH="/usr/bin/python3"
 
-if [ -e "$CONFIG_DIR" ]; then
-    ls -ld $CONFIG_DIR
+if [ -f "$PYTHON_PATH" ]; then
+    echo "Python installation detected:"
+    ls -ld $PYTHON_PATH
 else
-    echo "Python directory not found"
+    echo "Python executable not found."
 fi
