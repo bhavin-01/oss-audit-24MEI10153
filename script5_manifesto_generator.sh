@@ -1,24 +1,41 @@
 #!/bin/bash
 
+# -----------------------------------------------------
 # Script 5: Open Source Manifesto Generator
+# Author: Bhavin
+# Purpose:
+#   Interactively collects user responses and generates
+#   a personalized open-source philosophy statement.
+#   Demonstrates user input and file output.
+# -----------------------------------------------------
 
-echo "Answer three questions to generate your manifesto."
+echo "Welcome to the Open Source Manifesto Generator"
+echo "Please answer the following questions."
+echo ""
 
-read -p "1. Name one open-source tool you use every day: " TOOL
-read -p "2. In one word, what does freedom mean to you: " FREEDOM
-read -p "3. Name one thing you would build and share freely: " BUILD
+read -p "1. Name an open-source tool you frequently use: " TOOL
+read -p "2. In one word, what does 'freedom' mean to you? " FREEDOM
+read -p "3. Name something you would build and share freely: " PROJECT
 
 DATE=$(date '+%d %B %Y')
-OUTPUT="manifesto_$(whoami).txt"
+OUTPUT_FILE="manifesto_$(whoami).txt"
 
-echo "Open Source Manifesto" > $OUTPUT
-echo "Date: $DATE" >> $OUTPUT
-echo "" >> $OUTPUT
-echo "I use the open-source tool $TOOL every day." >> $OUTPUT
-echo "To me, freedom means $FREEDOM." >> $OUTPUT
-echo "If given the opportunity, I would build $BUILD and share it freely with the world." >> $OUTPUT
-echo "Open source allows knowledge and innovation to be shared by everyone." >> $OUTPUT
+# Create manifesto text
+echo "--------------------------------------" > $OUTPUT_FILE
+echo "Open Source Manifesto" >> $OUTPUT_FILE
+echo "Author: $(whoami)" >> $OUTPUT_FILE
+echo "Date: $DATE" >> $OUTPUT_FILE
+echo "--------------------------------------" >> $OUTPUT_FILE
+echo "" >> $OUTPUT_FILE
+echo "I believe in the power of open source." >> $OUTPUT_FILE
+echo "Every day I rely on tools like $TOOL." >> $OUTPUT_FILE
+echo "To me, freedom represents $FREEDOM." >> $OUTPUT_FILE
+echo "One day I would like to create $PROJECT and share it openly." >> $OUTPUT_FILE
+echo "Open collaboration allows innovation to grow beyond individuals." >> $OUTPUT_FILE
+echo "" >> $OUTPUT_FILE
 
 echo ""
-echo "Manifesto saved to $OUTPUT"
-cat $OUTPUT
+echo "Manifesto generated successfully."
+echo "Saved as: $OUTPUT_FILE"
+echo ""
+cat $OUTPUT_FILE
