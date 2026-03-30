@@ -88,7 +88,7 @@ An interactive script that asks the user three questions about their open-source
 **1. Clone the repository**
 ```bash
 git clone https://github.com/bhavin-01/oss-audit-24MEI10153.git
-cd oss-audit-[rollnumber]
+cd oss-audit-24MEI10153
 ```
 
 **2. Make all scripts executable**
